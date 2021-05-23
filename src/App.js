@@ -4,6 +4,7 @@ import 'reset-css';
 import Header from './Components/header'
 import Columns from './Components/columns';
 import Inquiry from './Components/inquiry';
+import LineChart from './Components/chart'
 import {GetColumns, GetItem} from './API/GetData';
 
 class App extends Component {
@@ -98,14 +99,14 @@ class App extends Component {
     }
 
     render() {
-        const {columns, inquiry} = this.state;
+        const {columns, inquiry, details} = this.state;
         return (
             <div className="container">
                 <Header />
                 <Columns columns={columns} handleDragStart={this.handleDragStart} />
                 <div className="rightCol">
                     <Inquiry inquiry={inquiry} handleDragOver={this.handleDragOver} handleDrop={this.handleDrop} handleClear={this.handleClear} />
-                    
+                    {details.length > 0 ? <LineChart details={details} /> : ''}
                 </div>
             </div>
         )
